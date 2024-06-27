@@ -1,6 +1,26 @@
 import torch
 from torch import nn
+from dataclasses import dataclass
+from typing import Optional, Tuple, Union
 from transformers import RobertaPreTrainedModel, RobertaModel
+from transformers.utils import ModelOutput
+
+
+@dataclass
+class QuestClsQASpanSuppClsFullDocModelOutput(ModelOutput):
+    loss: Optional[torch.FloatTensor] = None
+    question_type_loss: Optional[torch.FloatTensor] = None
+    answer_span_loss: Optional[torch.FloatTensor] = None
+    supp_paragraph_loss: Optional[torch.FloatTensor] = None
+    supp_sentence_loss: Optional[torch.FloatTensor] = None
+    question_type_logits: Optional[torch.FloatTensor] = None
+    start_logits: Optional[torch.FloatTensor] = None
+    end_logits: Optional[torch.FloatTensor] = None
+    supp_paragraph_logits: Optional[torch.FloatTensor] = None
+    supp_sentence_logits: Optional[torch.FloatTensor] = None
+    hidden_states: Optional[Tuple[torch.FloatTensor]] = None
+    attentions: Optional[Tuple[torch.FloatTensor]] = None
+    lm_logits: Optional[torch.FloatTensor] = None
 
 
 class RobertaLMHead(nn.Module):
